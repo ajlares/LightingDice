@@ -16,8 +16,8 @@ public class DiceFaceManager : MonoBehaviour
             if(indexTime > fresseTime)
             {
                 GameManager.instance.DicePushBack(backFaceValeu);
-                FreesePosition();
                 isGrounded = false;
+                indexTime = 0;
             }
             else
             {
@@ -39,9 +39,5 @@ public class DiceFaceManager : MonoBehaviour
         {
             isGrounded = false;
         }  
-    }
-    private void FreesePosition()
-    {
-        rb.freezeRotation = true;
     }
 }
