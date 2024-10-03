@@ -11,8 +11,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image TimeImage;
     [SerializeField] private float indexTime;
     [SerializeField] private float betTime;
+    [SerializeField] private float actualMoney;
     [SerializeField] private bool updateImage;
       public static UIManager instance;
+      #region getter y setter
+
+    public float ActualMoney
+        {
+            get
+            {
+                return actualMoney;
+            }
+            set
+            {
+                actualMoney += value;
+            }
+        }
+
+      #endregion
     private void Awake() 
     {
         if(instance == null)
@@ -30,9 +46,10 @@ public class UIManager : MonoBehaviour
         {
             if(indexTime > betTime)
             {
+                updateImage = false;
                 TimeImage.fillAmount = 0;
                 indexTime = 0;
-                GameManager.instance.Reset();
+                GameManager.instance.StartGame();
                 acountText.text = " ";
             }
             else
@@ -56,4 +73,7 @@ public class UIManager : MonoBehaviour
     {
         TimeImage.fillAmount =  indexTime / betTime;
     }
+
+
+
 }
