@@ -1,23 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // global variables
     [SerializeField] private List<int> diceValeus;
     [SerializeField] private List<GameObject> dices;
     [SerializeField] private List<GameObject> spawnDices;
     [SerializeField] private int totalAcount;
     [SerializeField] private int delayCouldown;
     [SerializeField] private GameObject spawntop;
-    [SerializeField] private bool canRepeat;
 
     #region getersYseters
-
+    [SerializeField] private bool canRepeat;
+    [SerializeField] private float actualMoney;
     public bool CanRepeat
     {
         get
@@ -25,8 +23,21 @@ public class GameManager : MonoBehaviour
             return canRepeat;
         }
     }
+
+    public float ActualMoney
+        {
+            get
+            {
+                return actualMoney;
+            }
+            set
+            {
+                actualMoney += value;
+            }
+        }
     #endregion
 
+    #region Instance
     public static GameManager instance;
     private void Awake() 
     {
@@ -39,6 +50,8 @@ public class GameManager : MonoBehaviour
             Destroy( this);
         }  
     }
+
+    #endregion
     private void Start() {
         UIManager.instance.ColdownTime();
     }
@@ -102,7 +115,6 @@ public class GameManager : MonoBehaviour
             bets[bets.Count][0] = betNumber;
             bets[bets.Count][1] = betValeu;
         }
-
     }
 
     #endregion
