@@ -67,4 +67,8 @@ public class UIManager : MonoBehaviour
     {
         actualMoney.text = "$ " + GameManager.instance.ActualMoney.ToString();
     }
+    public void Bet(int betNumber)
+    {
+        GameManager.instance.AddBet(betNumber);
+    }
 }

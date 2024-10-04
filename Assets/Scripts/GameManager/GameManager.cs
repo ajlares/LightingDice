@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     #region getersYseters
     [SerializeField] private bool canRepeat;
     [SerializeField] private float actualMoney;
+    [SerializeField] private int actualBetAcount;
     public bool CanRepeat
     {
         get
@@ -89,32 +90,34 @@ public class GameManager : MonoBehaviour
 
     #region Validacion
     [SerializeField] private List<List<int>> bets;
-    public void AddBet(int betNumber,int betValeu)
+    public void AddBet(int betNumber)
     {
         bool isInArray = false;
-        if(bets.Count()==0)
-        {
-            isInArray = true;
-            bets[0][0] = betNumber;
-            bets[0][1] = betValeu;
-        }
-        else
+        if(bets.Count() != 0)
         {
             for(int i = 0; i < bets.Count(); i++)
             {
                 if(bets[i][0] == betNumber)
                 {
-                    bets[i][1] += betValeu;
+                    bets[i][1] += actualBetAcount;
                     isInArray = true;
                 }
             }
+        }
+        else
+        {
+
+            isInArray = true;
+            bets[0][0] = betNumber;
+            bets[0][1] = actualBetAcount;
         }
 
         if(!isInArray)
         { 
             bets[bets.Count][0] = betNumber;
-            bets[bets.Count][1] = betValeu;
+            bets[bets.Count][1] = actualBetAcount;
         }
+        Debug.Log("actualsBets " + bets);
     }
 
     #endregion
