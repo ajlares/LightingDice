@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
             UIManager.instance.ColdownTime();
             diceValeus.Clear();
             StartCoroutine(DiceReset());
+            winBets();
         }
     }
     public void DicePushBack(int diceValeu)
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        totalAcount = 0;
+        //totalAcount = 0;
         canRepeat = false;
         spawntop.SetActive(false);
     }
@@ -89,7 +91,9 @@ public class GameManager : MonoBehaviour
     }
 
     #region Validacion
-    [SerializeField] private List<List<int>> bets;
+    [SerializeField] private List<int> bets;
+    [SerializeField] private List<int> betsAcount;
+    [SerializeField] private List<int> betPayment;
     public void AddBet(int betNumber)
     {
         bool isInArray = false;
@@ -97,29 +101,74 @@ public class GameManager : MonoBehaviour
         {
             for(int i = 0; i < bets.Count(); i++)
             {
-                if(bets[i][0] == betNumber)
+                if(bets[i] == betNumber)
                 {
-                    bets[i][1] += actualBetAcount;
+                    betsAcount[i] += actualBetAcount;
+                    actualMoney -= actualBetAcount;
+                    UIManager.instance.UpdateMoney();
                     isInArray = true;
                 }
             }
         }
         else
         {
-
-            isInArray = true;
-            bets[0][0] = betNumber;
-            bets[0][1] = actualBetAcount;
+            isInArray = false;
         }
 
         if(!isInArray)
         { 
-            bets[bets.Count][0] = betNumber;
-            bets[bets.Count][1] = actualBetAcount;
+            bets.Add(betNumber);
+            betsAcount.Add(actualBetAcount);
+            actualMoney -= actualBetAcount;
+            UIManager.instance.UpdateMoney();
         }
-        Debug.Log("actualsBets " + bets);
     }
 
+    private void winBets()
+    {
+        int payAcount = 0;
+        if(bets.Count() != 0)
+        {
+            for(int i = 0; i < bets.Count(); i++)
+            {
+                // numbers
+                if(totalAcount == bets[i])
+                {    
+                    payAcount += betsAcount[i] * betPayment[bets[i-1]];
+                }
+                //low
+                if(bets[i] == 1)
+                {
+                    // validation valeu
+                    if(totalAcount < 11)
+                    {
+                        payAcount += betsAcount[i] * 2;
+                    }
+                }
+                //high
+                if(bets[i] == 2)
+                {
+                    // validation valeu
+                    if(totalAcount > 10)
+                    {
+                        payAcount += betsAcount[i] * 2;
+                    }
+                }
+            }
+        }
+        PayBets(payAcount);
+    }
+    private void PayBets(int payAmount)
+    {
+        actualMoney += payAmount;
+        bets.Clear();
+        betsAcount.Clear();
+    }
+
+    private void RestartBets()
+    {
+
+    }
     #endregion
 
 }

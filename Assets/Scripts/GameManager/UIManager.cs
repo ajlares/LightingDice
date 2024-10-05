@@ -28,6 +28,11 @@ public class UIManager : MonoBehaviour
         }  
     }
     #endregion
+
+    private void Start() 
+    {
+        UpdateMoney();    
+    }
     private void Update()
     {
         if(updateImage)
@@ -63,12 +68,13 @@ public class UIManager : MonoBehaviour
         TimeImage.fillAmount =  indexTime / betTime;
     }
 
-    private void UpdateMoney()
+    public void UpdateMoney()
     {
         actualMoney.text = "$ " + GameManager.instance.ActualMoney.ToString();
     }
     public void Bet(int betNumber)
     {
         GameManager.instance.AddBet(betNumber);
+
     }
 }
