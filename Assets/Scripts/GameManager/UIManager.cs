@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float betTime;
     [SerializeField] private bool updateImage;
     [SerializeField] private TextMeshProUGUI actualMoney;
+    [SerializeField] private GameObject betPanel;
     
     #region  instance
       public static UIManager instance;
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
                 updateImage = false;
                 TimeImage.fillAmount = 0;
                 indexTime = 0;
+                BetPanel(false);
                 GameManager.instance.StartGame();
                 acountText.text = " ";
                 UpdateMoney();
@@ -76,5 +78,9 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.AddBet(betNumber);
 
+    }
+    public void BetPanel(bool valeu)
+    {
+        betPanel.SetActive(valeu);
     }
 }

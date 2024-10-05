@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
             UIManager.instance.LastWin(totalAcount);
             spawntop.SetActive(true);
             UIManager.instance.ColdownTime();
+            UIManager.instance.BetPanel(true);
             diceValeus.Clear();
             StartCoroutine(DiceReset());
             winBets();
@@ -161,6 +162,7 @@ public class GameManager : MonoBehaviour
     private void PayBets(int payAmount)
     {
         actualMoney += payAmount;
+        UIManager.instance.UpdateMoney();
         bets.Clear();
         betsAcount.Clear();
     }
