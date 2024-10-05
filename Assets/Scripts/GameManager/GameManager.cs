@@ -89,7 +89,8 @@ public class GameManager : MonoBehaviour
     }
 
     #region Validacion
-    [SerializeField] private List<List<int>> bets;
+    [SerializeField] private List<int> bets;
+    [SerializeField] private List<int> betsAcount;
     public void AddBet(int betNumber)
     {
         bool isInArray = false;
@@ -97,27 +98,25 @@ public class GameManager : MonoBehaviour
         {
             for(int i = 0; i < bets.Count(); i++)
             {
-                if(bets[i][0] == betNumber)
+                if(bets[i] == betNumber)
                 {
-                    bets[i][1] += actualBetAcount;
+                    betsAcount[i] += actualBetAcount;
                     isInArray = true;
                 }
             }
         }
         else
         {
-
-            isInArray = true;
-            bets[0][0] = betNumber;
-            bets[0][1] = actualBetAcount;
+            isInArray = false;
         }
 
         if(!isInArray)
         { 
-            bets[bets.Count][0] = betNumber;
-            bets[bets.Count][1] = actualBetAcount;
+            bets.Add(betNumber);
+            betsAcount.Add(actualBetAcount);
         }
         Debug.Log("actualsBets " + bets);
+        Debug.Log("actualsBestsACount " + betsAcount);
     }
 
     #endregion
