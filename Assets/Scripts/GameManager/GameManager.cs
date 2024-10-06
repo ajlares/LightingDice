@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        //totalAcount = 0;
         canRepeat = false;
         spawntop.SetActive(false);
     }
@@ -177,11 +176,13 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateMoney();
         bets.Clear();
         betsAcount.Clear();
+        RestartBets();
     }
 
     private void RestartBets()
     {
-
+        bets.Clear();
+        betsAcount.Clear();
     }
     #endregion
 
