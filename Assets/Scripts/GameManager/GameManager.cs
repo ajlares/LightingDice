@@ -37,6 +37,18 @@ public class GameManager : MonoBehaviour
                 actualMoney += value;
             }
         }
+    public int ActualBetAcount
+    {
+        get
+        {
+            return actualBetAcount;
+        }
+        set
+        {
+            actualBetAcount = value;
+        }
+        
+    }
     #endregion
 
     #region Instance

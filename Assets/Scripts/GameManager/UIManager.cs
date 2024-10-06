@@ -76,11 +76,22 @@ public class UIManager : MonoBehaviour
     }
     public void Bet(int betNumber)
     {
+        if(GameManager.instance.ActualMoney > betNumber)
+        {
         GameManager.instance.AddBet(betNumber);
+        }
+        else
+        {
+            Debug.Log("no hay Dinero");
+        }
 
     }
     public void BetPanel(bool valeu)
     {
         betPanel.SetActive(valeu);
+    }
+    public void updateBetAcount(int betValeu)
+    {
+        GameManager.instance.ActualBetAcount = betValeu;
     }
 }
