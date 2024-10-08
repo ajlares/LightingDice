@@ -37,6 +37,18 @@ public class GameManager : MonoBehaviour
                 actualMoney += value;
             }
         }
+    public int ActualBetAcount
+    {
+        get
+        {
+            return actualBetAcount;
+        }
+        set
+        {
+            actualBetAcount = value;
+        }
+        
+    }
     #endregion
 
     #region Instance
@@ -66,6 +78,7 @@ public class GameManager : MonoBehaviour
             UIManager.instance.LastWin(totalAcount);
             spawntop.SetActive(true);
             UIManager.instance.ColdownTime();
+            UIManager.instance.BetPanel(true);
             diceValeus.Clear();
             StartCoroutine(DiceReset());
             winBets();
@@ -77,7 +90,6 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        //totalAcount = 0;
         canRepeat = false;
         spawntop.SetActive(false);
     }
@@ -161,13 +173,16 @@ public class GameManager : MonoBehaviour
     private void PayBets(int payAmount)
     {
         actualMoney += payAmount;
+        UIManager.instance.UpdateMoney();
         bets.Clear();
         betsAcount.Clear();
+        RestartBets();
     }
 
     private void RestartBets()
     {
-
+        bets.Clear();
+        betsAcount.Clear();
     }
     #endregion
 
