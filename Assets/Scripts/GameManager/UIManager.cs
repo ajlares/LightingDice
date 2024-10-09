@@ -76,9 +76,9 @@ public class UIManager : MonoBehaviour
     }
     public void Bet(int betNumber)
     {
-        if(GameManager.instance.ActualMoney > betNumber)
+        if(GameManager.instance.ActualMoney > GameManager.instance.ActualBetAcount)
         {
-        GameManager.instance.AddBet(betNumber);
+            GameManager.instance.AddBet(betNumber);
         }
         else
         {

@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     #endregion
     private void Start() 
     {
-        UIManager.instance.ColdownTime();
+        UIManager.instance.ColdownTime(); 
         dices[0].transform.position = spawnDices[0].transform.position;
         dices[0].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
         dices[1].transform.position = spawnDices[1].transform.position;
