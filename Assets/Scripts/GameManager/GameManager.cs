@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,9 +20,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform pointLeftb;
     [SerializeField] private Transform pointRighta;
     [SerializeField] private Transform pointRightb;
-    [SerializeField] private float speed;
-    [SerializeField] private bool doorsCanMove;
-    [SerializeField] private bool isDoorsOn_a;
 
     #region getersYseters
     [SerializeField] private bool canRepeat;
@@ -78,7 +76,12 @@ public class GameManager : MonoBehaviour
     private void Start() 
     {
         UIManager.instance.ColdownTime();
-        doorsCanMove = false;
+        dices[0].transform.position = spawnDices[0].transform.position;
+        dices[0].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
+        dices[1].transform.position = spawnDices[1].transform.position;
+        dices[1].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
+        dices[2].transform.position = spawnDices[2].transform.position;
+        dices[2].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
     }
     private void Update() 
     {
@@ -108,8 +111,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         dices[0].transform.position = spawnDices[0].transform.position;
+        dices[0].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
         dices[1].transform.position = spawnDices[1].transform.position;
+        dices[1].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
         dices[2].transform.position = spawnDices[2].transform.position;
+        dices[2].transform.Rotate(UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180),UnityEngine.Random.Range(-180,180));
     }
 
     private void OpenDors()
