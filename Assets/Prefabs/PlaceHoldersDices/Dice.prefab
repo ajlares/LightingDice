@@ -436,15 +436,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a3466e13fe6961a4ab6e615be6328c21, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3466e13fe6961a4ab6e615be6328c21, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3466e13fe6961a4ab6e615be6328c21, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a3466e13fe6961a4ab6e615be6328c21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 5060444177187149915, guid: 09444e0b953e43543aa5bed5ee616204, type: 3}
     - target: {fileID: 919132149155446097, guid: a3466e13fe6961a4ab6e615be6328c21, type: 3}
       propertyPath: m_Name
-      value: Dice_D6_4K
+      value: Dice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

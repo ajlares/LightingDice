@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +13,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> spawnDices;
     [SerializeField] private int totalAcount;
     [SerializeField] private int delayCouldown;
-    [SerializeField] private GameObject spawntop;
+    [SerializeField] private GameObject spawntopLeft;
+    [SerializeField] private GameObject spawntopRight;
+    [SerializeField] private Transform pointLeftA;
+    [SerializeField] private Transform pointLeftb;
+    [SerializeField] private Transform pointRighta;
+    [SerializeField] private Transform pointRightb;
+    [SerializeField] private float speed;
+    [SerializeField] private bool doorsCanMove;
+    [SerializeField] private bool isDoorsOn_a;
 
     #region getersYseters
     [SerializeField] private bool canRepeat;
@@ -66,17 +75,19 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-    private void Start() {
+    private void Start() 
+    {
         UIManager.instance.ColdownTime();
+        doorsCanMove = false;
     }
     private void Update() 
     {
         if(diceValeus.Count == 3)
         {
+            CloseDoors();
             canRepeat = true;
             totalAcount = diceValeus.Sum();
             UIManager.instance.LastWin(totalAcount);
-            spawntop.SetActive(true);
             UIManager.instance.ColdownTime();
             UIManager.instance.BetPanel(true);
             diceValeus.Clear();
@@ -91,7 +102,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         canRepeat = false;
-        spawntop.SetActive(false);
+        OpenDors();
     }
     private IEnumerator DiceReset()
     {
@@ -99,7 +110,17 @@ public class GameManager : MonoBehaviour
         dices[0].transform.position = spawnDices[0].transform.position;
         dices[1].transform.position = spawnDices[1].transform.position;
         dices[2].transform.position = spawnDices[2].transform.position;
+    }
 
+    private void OpenDors()
+    {
+        spawntopLeft.transform.position = pointLeftb.position;
+        spawntopRight.transform.position = pointRightb.position;
+    }
+    private void CloseDoors()
+    {
+        spawntopLeft.transform.position = pointLeftA.position;
+        spawntopRight.transform.position = pointRighta.position;
     }
 
     #region Validacion
