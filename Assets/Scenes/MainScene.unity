@@ -637,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4643130698859705134, guid: 2a98b648a4dd90f49a003c65bc1da003, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6356866489601810764, guid: 2a98b648a4dd90f49a003c65bc1da003, type: 3}
       propertyPath: m_LocalPosition.x
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 1151714563}
   - component: {fileID: 1151714562}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: MapBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
